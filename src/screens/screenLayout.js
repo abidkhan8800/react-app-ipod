@@ -11,7 +11,7 @@ import Songs from "./music";
 class ScreenLayout extends React.Component {
 
     render() {
-        const {menuItems, showMenu, currentActiveIndex, musicMenu, currentComponent} = this.props;
+        const {menuItems, showMenu, currentActiveIndex, musicMenu, currentComponent, currentSongIndex, setCurrentSongIndex} = this.props;
         return (
             <div style={styles.root}>
                 {/* <div style={styles.listStyles}>
@@ -24,7 +24,7 @@ class ScreenLayout extends React.Component {
                     { currentComponent === "Games" && <Games />}
                     { currentComponent === "Albums" && <Albums />}
                     { currentComponent === "Artists" && <Artists />}
-                    { currentComponent === "All Songs" && <Songs />}
+                    { currentComponent === "All Songs" && <Songs currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex}/>}
                 </div>
             </div>
         )

@@ -1,40 +1,44 @@
 import React from 'react';
-import axios from 'axios';
-
+import AudiotrackIcon from '@material-ui/icons/Audiotrack';
+import songsDetails from '../songsDetails';
+import ReactAudioPlayer from 'react-audio-player';
 class Music extends React.Component{
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             products: [],
             loader: true,
-            songs: []
+            songs: [], 
         }
     }
-    componentDidMount() {
+    
+    handleSongEnded = () =>{
+        if(this.index == songsDetails.length - 1){
+            this.index = 0;
+        }
+        this.index++;
+        this.props.setCurrentSongIndex(this.index);
     }
     render(){
-        let songs = this.state.songs;
-        let loader = this.state.loader;
+        const audios = songsDetails;
+        this.index = this.props.currentSongIndex;
         return (<div style={styles.gamesContainer}>
             <h1 style={styles.headerStyles}>All Songs</h1>
-            {/* {<h2 style={{position: "absolute", paddingLeft: "10px"}}>Please wait loading songs...</h2>} */}
-            { songs && 
+            { audios && 
               <div style={styles.songsContainer}>
-                {songs.map((song, index)=>{
+                {audios.map((song, index)=>{
                   return <div style={styles.songStyle} key={index}>
-                    <img style={styles.imageStyle} src={song.images.coverart}/>
-                    <span>{song.title}</span>
-                    {/* <audio controls muted>
-                      <source src={song.hub.actions[1].uri}/>
-                    </audio> */}
+                    <AudiotrackIcon  style={styles.imageStyle}/>
+                    <span >{song.name}</span>
                   </div>
                 })}
               </div>}
+              <div style={styles.musicPlayer}>
+                  <ReactAudioPlayer src={audios[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}}/>
+              </div>
         </div>)
     }
 }
-
-
 const styles={
     gamesContainer: {
         width: 300, 
@@ -44,25 +48,30 @@ const styles={
     },
     headerStyles: {
         textAlign: "center",
-        color: "white",
+        color: "black",
         margin: 0,
         padding: "2px"
     },
     songsContainer: {
         overflow: "scroll",
-        paddingLeft: "20px",
+        paddingLeft: "0px 10px",
         height: "250px"
     },
     songStyle: {
         display: "flex",
         alignItems: "center",
-        padding: "1px 0"
+        padding: "1px 0",
+        borderBottom: "1px solid white"
     },
     imageStyle: {
-        width: 40, 
-        height: 40, 
+        width: 30, 
+        height: 30, 
         borderRadius: "50%", 
         marginRight: "20px"
+    },
+    musicPlayer: {
+        position: "absolute",
+        bottom: 0
     }
 }
 export default Music;

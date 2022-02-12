@@ -4,28 +4,25 @@ import FastForwardIcon from '@material-ui/icons/FastForward';
 import FastRewindIcon from '@material-ui/icons/FastRewind';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
-
+import songsDetails from  '../songsDetails';
 class Controller extends React.Component {
   constructor() {
     super();
     this.movingIndex = 0
     this.myRef = React.createRef();
+    this.songIndex = 0
   }
 
   componentDidMount() {
     let currentAngle = 0;
     const region = new ZingTouch.Region(this.myRef.current);
     const {setCurrentIndex, menuItems} = this.props;
-    console.log("djGDjhdgjhdgjGDJgjgdG",menuItems, this.props)
     region.bind(this.myRef.current, 'rotate', (e) => {
       currentAngle += e.detail.distanceFromLast;
       // when rotation is in clockwise direction
         if( currentAngle > 10){
           currentAngle = 0;
           this.movingIndex++;
-          if(this.movingIndex < 0){
-            this.movingIndex = menuItems.length-1;
-          }
           if(this.movingIndex > menuItems.length-1){
             this.movingIndex = 0;
           }
@@ -39,23 +36,34 @@ class Controller extends React.Component {
           if(this.movingIndex < 0){
             this.movingIndex = menuItems.length - 1;
           }
-          if(this.movingIndex > menuItems.length - 1){
-            this.movingIndex = 0;
-          }
           setCurrentIndex(this.movingIndex)
         }
       });
   }
 
   handleSelectionChange = () => {
-    console.log("hula loops s s",this.movingIndex, this.props.menuItems[this.movingIndex]);
     this.props.component(this.props.menuItems[this.movingIndex]);
+  }
+  handleNextButton = () =>{
+    if(this.songIndex == songsDetails.length - 1){
+      this.songIndex = 0;
+    }
+    this.songIndex++;
+    console.log("incr",this.songIndex)
+    this.props.setCurrentSongIndex(this.songIndex);
+  }
+
+  handleBackButton= () =>{
+    if(this.songIndex == 0){
+      this.songIndex = songsDetails.length - 1;
+    }
+    this.songIndex--;
+    console.log("decr",this.songIndex)
+    this.props.setCurrentSongIndex(this.songIndex);
   }
 
   render(){
     const {handleMenuClick, menuItems} = this.props 
-    console.log(this.movingIndex, menuItems.length)
-    console.log("djGDjhdgjhdgjGDJgjgdG",menuItems, this.props)
     return (
       <div style={styles.controllerConatiner}>
         <div style={styles.controller} draggable={false} ref={this.myRef}>
@@ -63,10 +71,10 @@ class Controller extends React.Component {
                   <span  onClick={()=>{handleMenuClick()}} style={styles.menuKeyStyle}>
                     MENU
                   </span>
-                  <span style={styles.backwardKeyStyle}>
+                  <span style={styles.backwardKeyStyle} onClick={()=>{this.handleBackButton()}}>
                     <FastRewindIcon fontSize="large"/>
                   </span>
-                  <span style={styles.forwardKeyStyle}>
+                  <span style={styles.forwardKeyStyle} onClick={()=>{this.handleNextButton()}}>
                    <FastForwardIcon fontSize="large"/> 
                   </span>
                   <span style={styles.playPauseKeyStyle}>

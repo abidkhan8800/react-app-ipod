@@ -12,7 +12,8 @@ class App extends React.Component {
       menuItems: [ "Coverflow", "Music", "Games", "Settings"],
       musicMenu: ["All Songs", "Artists", "Albums"],
       component: "",
-      currentList: ["Coverflow", "Music", "Games", "Settings"]
+      currentList: ["Coverflow", "Music", "Games", "Settings"],
+      currentSongIndex: 0
     }
   }
 
@@ -29,7 +30,6 @@ class App extends React.Component {
       })
   }
   setComponent = (component) => {
-    console.log(component);
     let list = [];
     let listDisplayed = false;
     if(component === "Music"){
@@ -41,7 +41,12 @@ class App extends React.Component {
     this.setState({
       component: component,
       showMenu: listDisplayed,
-      currentList: list
+      currentList: list,
+    })
+  }
+  setCurrentSongIndex = (index) =>{
+    this.setState({
+      currentSongIndex: index
     })
   }
 
@@ -50,11 +55,11 @@ class App extends React.Component {
       <div style={styles.root}>
         <div style={styles.container}> 
 
-          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} musicMenu ={this.state.musicMenu} currentComponent={this.state.component}/>
+          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} />
 
           <div style={styles.divider}></div>
 
-          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} musicMenu ={this.state.musicMenu}/>
+          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} setCurrentSongIndex={this.setCurrentSongIndex}/>
         </div>
       </div>
     );
