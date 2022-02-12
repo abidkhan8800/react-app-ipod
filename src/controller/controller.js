@@ -8,9 +8,9 @@ import songsDetails from  '../songsDetails';
 class Controller extends React.Component {
   constructor() {
     super();
-    this.movingIndex = 0
+    this.movingIndex = 0;
     this.myRef = React.createRef();
-    this.songIndex = 0
+    this.songIndex = 0;
   }
 
   componentDidMount() {
@@ -23,6 +23,9 @@ class Controller extends React.Component {
         if( currentAngle > 10){
           currentAngle = 0;
           this.movingIndex++;
+          if(this.movingIndex < 0){
+            this.movingIndex = menuItems.length-1;
+          }
           if(this.movingIndex > menuItems.length-1){
             this.movingIndex = 0;
           }
@@ -36,6 +39,9 @@ class Controller extends React.Component {
           if(this.movingIndex < 0){
             this.movingIndex = menuItems.length - 1;
           }
+          if(this.movingIndex > menuItems.length - 1){
+            this.movingIndex = 0;
+          }
           setCurrentIndex(this.movingIndex)
         }
       });
@@ -44,26 +50,26 @@ class Controller extends React.Component {
   handleSelectionChange = () => {
     this.props.component(this.props.menuItems[this.movingIndex]);
   }
+
   handleNextButton = () =>{
-    if(this.songIndex == songsDetails.length - 1){
+    this.songIndex++;
+    if(this.songIndex > songsDetails.length - 1){
       this.songIndex = 0;
     }
-    this.songIndex++;
-    console.log("incr",this.songIndex)
     this.props.setCurrentSongIndex(this.songIndex);
   }
 
   handleBackButton= () =>{
-    if(this.songIndex == 0){
+    this.songIndex--;
+    if(this.songIndex < 0){
       this.songIndex = songsDetails.length - 1;
     }
-    this.songIndex--;
-    console.log("decr",this.songIndex)
     this.props.setCurrentSongIndex(this.songIndex);
   }
 
+
   render(){
-    const {handleMenuClick, menuItems} = this.props 
+    const {handleMenuClick} = this.props 
     return (
       <div style={styles.controllerConatiner}>
         <div style={styles.controller} draggable={false} ref={this.myRef}>

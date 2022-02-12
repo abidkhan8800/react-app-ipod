@@ -41,10 +41,10 @@ class App extends React.Component {
     this.setState({
       component: component,
       showMenu: listDisplayed,
-      currentList: list,
+      currentList: list
     })
   }
-  setCurrentSongIndex = (index) =>{
+  setCurrentSongIndex = (index) => {
     this.setState({
       currentSongIndex: index
     })
@@ -55,11 +55,11 @@ class App extends React.Component {
       <div style={styles.root}>
         <div style={styles.container}> 
 
-          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} />
+          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} musicMenu ={this.state.musicMenu} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex}/>
 
           <div style={styles.divider}></div>
 
-          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} setCurrentSongIndex={this.setCurrentSongIndex}/>
+          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex ={this.state.currentIndex} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} musicMenu ={this.state.musicMenu} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex}/>
         </div>
       </div>
     );

@@ -10,6 +10,7 @@ class Music extends React.Component{
             loader: true,
             songs: [], 
         }
+        this.index = 0;
     }
     
     handleSongEnded = () =>{
@@ -19,6 +20,7 @@ class Music extends React.Component{
         this.index++;
         this.props.setCurrentSongIndex(this.index);
     }
+
     render(){
         const audios = songsDetails;
         this.index = this.props.currentSongIndex;
@@ -27,14 +29,14 @@ class Music extends React.Component{
             { audios && 
               <div style={styles.songsContainer}>
                 {audios.map((song, index)=>{
-                  return <div style={styles.songStyle} key={index}>
+                  return <div style={index === this.index ? styles.selectedlistItem : styles.songStyle} key={index}>
                     <AudiotrackIcon  style={styles.imageStyle}/>
                     <span >{song.name}</span>
                   </div>
                 })}
               </div>}
               <div style={styles.musicPlayer}>
-                  <ReactAudioPlayer src={audios[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}}/>
+                  <ReactAudioPlayer src={songsDetails[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}} muted />
               </div>
         </div>)
     }
@@ -72,6 +74,14 @@ const styles={
     musicPlayer: {
         position: "absolute",
         bottom: 0
+    },
+    selectedlistItem: {
+        display: "flex",
+        alignItems: "center",
+        padding: "1px 0",
+        borderBottom: "1px solid white",
+        backgroundColor: "skyblue",
+        color: "white"
     }
 }
 export default Music;

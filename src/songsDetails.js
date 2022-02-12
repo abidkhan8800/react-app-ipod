@@ -12,10 +12,6 @@ const songsDetails = [
         name: "The cradle of your soul"
     },
     {
-        url: "https://cdn.pixabay.com/audio/2022/01/11/audio_b21d9d6fa6.mp3",
-        name: "Moment"
-    },
-    {
         url: "https://cdn.pixabay.com/audio/2022/01/21/audio_31743c58bd.mp3",
         name: "Spirit blossom"
     },
@@ -25,7 +21,7 @@ const songsDetails = [
     },
     {
         url: "https://cdn.pixabay.com/audio/2022/01/20/audio_743615ade2.mp3",
-        name: "Every thig flees new"
+        name: "Everythig feels new"
     }
 ]
 
