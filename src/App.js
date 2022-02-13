@@ -1,6 +1,7 @@
 import React from "react";
 import Controller from "./controller/controller";
-import ScreenLayout from "./screens/screenLayout"
+import ScreenLayout from "./screens/screenLayout";
+import './app.css'
 
 
 class App extends React.Component {
@@ -11,7 +12,7 @@ class App extends React.Component {
       currentIndex: 0,
       menuItems: [ "Coverflow", "Music", "Games", "Settings"],
       musicMenu: ["All Songs", "Artists", "Albums"],
-      component: "",
+      currentComponent: "",
       currentList: ["Coverflow", "Music", "Games", "Settings"],
       currentSongIndex: 0,
       isSongPlaying: true
@@ -30,7 +31,7 @@ class App extends React.Component {
         currentIndex: index
       })
   }
-  setComponent = (component) => {
+  setCurrentComponent = (component) => {
     let list = [];
     let listDisplayed = false;
     if(component === "Music"){
@@ -40,19 +41,19 @@ class App extends React.Component {
       list = this.state.menuItems;
     }
     this.setState({
-      component: component,
+      currentComponent: component,
       showMenu: listDisplayed,
       currentList: list
     })
   }
   setCurrentSongIndex = (index) => {
     this.setState({
-      currentSongIndex: index
+      currentSongIndex: index,
+      isSongPlaying: (!this.state.isSongPlaying) ? true: this.state.isSongPlaying
     })
   }
 
   handlePlayPauseClick = () =>{
-    console.log('playPause')
     if(this.state.isSongPlaying){
      this.setState({isSongPlaying: false});
     }else{
@@ -62,10 +63,20 @@ class App extends React.Component {
 
   render(){
     return (
-      <div style={styles.root}>
-        <div style={styles.container}> 
-          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} musicMenu ={this.state.musicMenu} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} isSongPlaying={this.state.isSongPlaying}/>
-          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex ={this.state.currentIndex} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} musicMenu ={this.state.musicMenu} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} isSongPlaying={this.state.isSongPlaying} handlePlayPauseClick={this.handlePlayPauseClick}/>
+      <div className="rootApp">
+        <div className="rootContainer"> 
+            <ScreenLayout 
+                props={this.state}
+                setCurrentSongIndex={this.setCurrentSongIndex}
+            />
+            <Controller 
+                props={this.state} 
+                handleMenuClick={this.handleMenuClick} 
+                setCurrentIndex={this.setCurrentIndex} 
+                setCurrentComponent={this.setCurrentComponent} 
+                setCurrentSongIndex={this.setCurrentSongIndex} 
+                handlePlayPauseClick={this.handlePlayPauseClick}
+            />
         </div>
       </div>
     );
@@ -73,25 +84,7 @@ class App extends React.Component {
 }
 
 const styles = {
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center",
-    position: "relative",
-    marginTop: "5%",    
-  },
-  container: {
-    padding: "1em",
-    backgroundImage: "url(https://media.istockphoto.com/photos/silver-textured-background-picture-id1135421909?b=1&k=20&m=1135421909&s=170667a&w=0&h=uuY6fpQXKVYmrk9zefSe3-PfEvjlSweSQt1AJrV0hEA=)",
-    borderRadius: "1em",
-    backgroundSize: "cover"
-  },
-  divider:{
-    width: "1em",
-    height: "1em",
-  }
-
+  
 }
 
 export default App;
