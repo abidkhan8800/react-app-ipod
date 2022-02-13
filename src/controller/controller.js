@@ -18,19 +18,20 @@ class Controller extends React.Component {
     let currentAngle = 0;
     const region = new ZingTouch.Region(this.myRef.current);
     region.bind(this.myRef.current, 'rotate', (e) => {
-      const {setCurrentIndex, menuItems} = this.props;
+      const {setCurrentIndex} = this.props;
+      const {currentList} = this.props.props;
       currentAngle += e.detail.distanceFromLast;
       // when rotation is in clockwise direction
         if( currentAngle > 10){
           currentAngle = 0;
           this.movingIndex++;
           if(this.movingIndex < 0){
-            this.movingIndex = menuItems.length-1;
+            this.movingIndex = currentList.length-1;
           }
-          if(this.movingIndex > menuItems.length-1){
+          if(this.movingIndex > currentList.length-1){
             this.movingIndex = 0;
           }
-          setCurrentIndex(this.movingIndex)
+           setCurrentIndex(this.movingIndex)
         }
 
           // when rotation is in anti-clockwise direction
@@ -38,9 +39,9 @@ class Controller extends React.Component {
           currentAngle  = 0;
           this.movingIndex--;
           if(this.movingIndex < 0){
-            this.movingIndex = menuItems.length - 1;
+            this.movingIndex = currentList.length - 1;
           }
-          if(this.movingIndex > menuItems.length - 1){
+          if(this.movingIndex > currentList.length - 1){
             this.movingIndex = 0;
           }
           setCurrentIndex(this.movingIndex)
@@ -49,7 +50,12 @@ class Controller extends React.Component {
   }
 
   handleSelectionChange = () => {
-    this.props.component(this.props.menuItems[this.movingIndex]);
+    const {currentList, showMenu} = this.props.props
+    if(showMenu){
+      this.props.setCurrentComponent(currentList[this.movingIndex]);
+    }else{
+      this.props.handlePlayPauseClick();
+    }
   }
 
   handleNextButton = () =>{
@@ -74,9 +80,10 @@ class Controller extends React.Component {
 
   render(){
     const {handleMenuClick} = this.props;
+    const {isSongPlaying, currentComponent} = this.props.props;
     return (
       <div className="controllerConatiner">
-        <div className="controller" ref={this.myRef}>
+        <div className={(isSongPlaying && currentComponent === "All Songs") ? "controller controllerChageColor": "controller"} ref={this.myRef}>
              <div>
                   <span  onClick={()=>{handleMenuClick()}} className="menuKeyStyle">
                     MENU
@@ -91,7 +98,7 @@ class Controller extends React.Component {
                     <PlayArrowIcon fontSize="large"/><PauseIcon fontSize="large"/>
                   </span>
              </div>
-             <div className="mainButton" onClick={()=>{this.handleSelectionChange(this.movingIndex)}}>
+             <div className={(isSongPlaying && currentComponent === "All Songs") ? "mainButton controllerChageColor": "mainButton"} onClick={()=>{this.handleSelectionChange(this.movingIndex)}}>
             </div>
         </div>
     </div>

@@ -5,17 +5,18 @@ import Coverflow from "./coverflow";
 import Settings from "./settings";
 import Albums from "./albums";
 import Artists from "./artists";
-import Songs from "./music";
+import Songs from "./allSongs";
 
 
 class ScreenLayout extends React.Component {
 
     render() {
-        const {menuItems, showMenu, currentActiveIndex, musicMenu, currentComponent, currentSongIndex, setCurrentSongIndex, isSongPlaying} = this.props;
+        const {showMenu, currentIndex, musicMenu, currentComponent, currentSongIndex, isSongPlaying, currentList} = this.props.props;
+        const {setCurrentSongIndex} = this.props;
         return (
             <div className="base">
                 <div className="baseScreenStyles">
-                    { showMenu && <List menuItems={menuItems} currentActiveIndex={currentActiveIndex} musicMenu={musicMenu} showMenu={showMenu}/>}  
+                    { showMenu && <List menuItems={currentList} currentActiveIndex={currentIndex} musicMenu={musicMenu} showMenu={showMenu}/>}  
                     { currentComponent === "Coverflow" && <Coverflow/>}
                     { currentComponent === "Settings" && <Settings />}
                     { currentComponent === "Games" && <Games />}
