@@ -67,6 +67,9 @@ class Controller extends React.Component {
     this.props.setCurrentSongIndex(this.songIndex);
   }
 
+  handlePlayPauseButton = () => {
+    this.props.handlePlayPauseClick();
+  }
 
   render(){
     const {handleMenuClick} = this.props;
@@ -83,7 +86,7 @@ class Controller extends React.Component {
                   <span style={styles.forwardKeyStyle} onClick={()=>{this.handleNextButton()}}>
                    <FastForwardIcon fontSize="large"/> 
                   </span>
-                  <span style={styles.playPauseKeyStyle}>
+                  <span style={styles.playPauseKeyStyle} onClick={()=>{this.handlePlayPauseButton()}}>
                     <PlayArrowIcon fontSize="large"/><PauseIcon fontSize="large"/>
                   </span>
              </div>

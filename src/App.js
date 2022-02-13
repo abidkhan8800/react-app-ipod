@@ -13,7 +13,8 @@ class App extends React.Component {
       musicMenu: ["All Songs", "Artists", "Albums"],
       component: "",
       currentList: ["Coverflow", "Music", "Games", "Settings"],
-      currentSongIndex: 0
+      currentSongIndex: 0,
+      isSongPlaying: true
     }
   }
 
@@ -50,16 +51,25 @@ class App extends React.Component {
     })
   }
 
+  handlePlayPauseClick = () =>{
+    console.log('playPause')
+    if(this.state.isSongPlaying){
+     this.setState({isSongPlaying: false});
+    }else{
+      this.setState({isSongPlaying: true})
+    }
+  }
+
   render(){
     return (
       <div style={styles.root}>
         <div style={styles.container}> 
 
-          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} musicMenu ={this.state.musicMenu} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex}/>
+          <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} musicMenu ={this.state.musicMenu} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} isSongPlaying={this.state.isSongPlaying}/>
 
           <div style={styles.divider}></div>
 
-          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex ={this.state.currentIndex} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} musicMenu ={this.state.musicMenu} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex}/>
+          <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex ={this.state.currentIndex} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} musicMenu ={this.state.musicMenu} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} isSongPlaying={this.state.isSongPlaying} handlePlayPauseClick={this.handlePlayPauseClick}/>
         </div>
       </div>
     );

@@ -22,9 +22,20 @@ class Music extends React.Component{
         this.props.setCurrentSongIndex(this.index);
     }
 
+    handlePlayPauseClick(e){
+        if(e){
+            if(!this.props.isSongPlaying){
+                e.pause();
+            }else{
+                e.play();
+            }
+        }
+    }
+
     render(){
         const audios = songsDetails;
         this.index = this.props.currentSongIndex;
+        let songState = this.props.isSongPlaying;
         // let selectedClass = (index === this.index ? "selectedlistItem": "songStyle")
         // console.log(selectedClass)
         return (<div style={styles.gamesContainer}>
@@ -39,7 +50,7 @@ class Music extends React.Component{
                 })}
               </div>}
               <div style={styles.musicPlayer}>
-                  <ReactAudioPlayer src={songsDetails[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}} />
+                  <audio src={songsDetails[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}}  ref={(element) => {this.handlePlayPauseClick(element)}}/>
               </div>
         </div>)
     }
