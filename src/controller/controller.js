@@ -16,8 +16,8 @@ class Controller extends React.Component {
   componentDidMount() {
     let currentAngle = 0;
     const region = new ZingTouch.Region(this.myRef.current);
-    const {setCurrentIndex, menuItems} = this.props;
     region.bind(this.myRef.current, 'rotate', (e) => {
+      const {setCurrentIndex, menuItems} = this.props;
       currentAngle += e.detail.distanceFromLast;
       // when rotation is in clockwise direction
         if( currentAngle > 10){
@@ -69,7 +69,7 @@ class Controller extends React.Component {
 
 
   render(){
-    const {handleMenuClick} = this.props 
+    const {handleMenuClick} = this.props;
     return (
       <div style={styles.controllerConatiner}>
         <div style={styles.controller} draggable={false} ref={this.myRef}>

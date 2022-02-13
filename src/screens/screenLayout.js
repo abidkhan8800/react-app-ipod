@@ -14,9 +14,6 @@ class ScreenLayout extends React.Component {
         const {menuItems, showMenu, currentActiveIndex, musicMenu, currentComponent, currentSongIndex, setCurrentSongIndex} = this.props;
         return (
             <div style={styles.root}>
-                {/* <div style={styles.listStyles}>
-                
-                </div> */}
                 <div style={styles.mainScreen}>
                     { showMenu && <List menuItems={menuItems} currentActiveIndex={currentActiveIndex} musicMenu={musicMenu} showMenu={showMenu}/>}  
                     { currentComponent === "Coverflow" && <Coverflow/>}
