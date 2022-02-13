@@ -1,0 +1,66 @@
+
+/* Controller Styling  */
+
+/* controller container styling */
+
+.controllerConatiner{
+    width: 300px;
+    height: 300px;
+    position: relative;
+    vertical-align: center;
+    margin-top: 18px;
+  }
+
+  /* conroller styling */
+
+  .controller{
+    margin: auto;
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    position: relative;
+    border-radius: 50%;
+  }
+
+  .mainButton{
+    width: 120px;
+    height: 120px;
+    background-image: url(https://media.istockphoto.com/photos/silver-textured-background-picture-id1135421909?b=1&k=20&m=1135421909&s=170667a&w=0&h=uuY6fpQXKVYmrk9zefSe3-PfEvjlSweSQt1AJrV0hEA=);
+    margin: auto;
+    position: absolute;
+    border-radius: 50%;
+    top: 30%;
+    left: 30%;
+  }
+
+  .menuKeyStyle{
+    position: absolute;
+    font-weight: bold; 
+    color: grey;
+    font-size: 20px;
+    left: 40%;
+    top: 10%;
+    padding: 0;
+  }
+
+  .forwardKeyStyle{
+    position: absolute;
+    color: grey;
+    top: 45%;
+    right: 10%;
+  }
+
+  .backwardKeyStyle { 
+    position: absolute;
+    color: grey;
+    top: 45%;
+    left: 10%;
+  }
+
+  .playPauseKeyStyle {
+    position: absolute;
+    color: grey;
+    left: 37%;
+    bottom: 10%;
+    
+  }

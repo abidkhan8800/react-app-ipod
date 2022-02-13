@@ -5,6 +5,7 @@ import FastRewindIcon from '@material-ui/icons/FastRewind';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import songsDetails from  '../songsDetails';
+import './controller.css'
 class Controller extends React.Component {
   constructor() {
     super();
@@ -74,86 +75,28 @@ class Controller extends React.Component {
   render(){
     const {handleMenuClick} = this.props;
     return (
-      <div style={styles.controllerConatiner}>
-        <div style={styles.controller} draggable={false} ref={this.myRef}>
+      <div className="controllerConatiner">
+        <div className="controller" ref={this.myRef}>
              <div>
-                  <span  onClick={()=>{handleMenuClick()}} style={styles.menuKeyStyle}>
+                  <span  onClick={()=>{handleMenuClick()}} className="menuKeyStyle">
                     MENU
                   </span>
-                  <span style={styles.backwardKeyStyle} onClick={()=>{this.handleBackButton()}}>
+                  <span className="backwardKeyStyle" onClick={()=>{this.handleBackButton()}}>
                     <FastRewindIcon fontSize="large"/>
                   </span>
-                  <span style={styles.forwardKeyStyle} onClick={()=>{this.handleNextButton()}}>
+                  <span className="forwardKeyStyle" onClick={()=>{this.handleNextButton()}}>
                    <FastForwardIcon fontSize="large"/> 
                   </span>
-                  <span style={styles.playPauseKeyStyle} onClick={()=>{this.handlePlayPauseButton()}}>
+                  <span className="playPauseKeyStyle" onClick={()=>{this.handlePlayPauseButton()}}>
                     <PlayArrowIcon fontSize="large"/><PauseIcon fontSize="large"/>
                   </span>
              </div>
-             <div style={styles.mainButton} onClick={()=>{this.handleSelectionChange(this.movingIndex)}}>
+             <div className="mainButton" onClick={()=>{this.handleSelectionChange(this.movingIndex)}}>
             </div>
         </div>
     </div>
     );
   }
-}
-
-
-const styles= {
-  controllerConatiner:{
-    width: "300px",
-    height: "300px",
-    backgroundColor: "#BBC2CC",
-    position: "relative",
-    verticalAlign: "center",
-  },
-  controller: {
-    margin: "auto",
-    height: "300px",
-    width: "300px",
-    backgroundColor: "white",
-    position: "relative",
-    borderRadius: "50%"
-  },
-  mainButton: {
-    width: "120px",
-    height: "120px",
-    backgroundColor: "#BBC2CC",
-    margin: "auto",
-    position: "absolute",
-    borderRadius: "50%",
-    top: "30%",
-    left: "30%",
-  },
-  menuKeyStyle:{
-    position: "absolute",
-    fontWeight: 'bold', 
-    color: "grey", 
-    fontSize: '20px',
-    left: "40%",
-    top: "10%",
-    padding: 0
-  },
-  forwardKeyStyle:{
-    position: "absolute",
-    color: "grey",
-    top: "45%",
-    right: "10%"
-  },
-  backwardKeyStyle: {
-    position: "absolute",
-    color: "grey",
-    top: "45%",
-    left: "10%"
-  },
-  playPauseKeyStyle: {
-    position: "absolute",
-    color: "grey", 
-    left: "37%",
-    bottom: "10%"
-    
-  }
-
 }
 
 export default Controller;

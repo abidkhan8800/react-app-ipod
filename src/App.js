@@ -64,11 +64,7 @@ class App extends React.Component {
     return (
       <div style={styles.root}>
         <div style={styles.container}> 
-
           <ScreenLayout menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex={this.state.currentIndex} musicMenu ={this.state.musicMenu} currentComponent={this.state.component} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} isSongPlaying={this.state.isSongPlaying}/>
-
-          <div style={styles.divider}></div>
-
           <Controller menuItems={this.state.currentList} showMenu={this.state.showMenu} currentActiveIndex ={this.state.currentIndex} handleMenuClick={this.handleMenuClick} setCurrentIndex={this.setCurrentIndex} component={this.setComponent} currentComponent={this.state.component} musicMenu ={this.state.musicMenu} currentSongIndex={this.state.currentSongIndex} setCurrentSongIndex={this.setCurrentSongIndex} isSongPlaying={this.state.isSongPlaying} handlePlayPauseClick={this.handlePlayPauseClick}/>
         </div>
       </div>
@@ -87,12 +83,13 @@ const styles = {
   },
   container: {
     padding: "1em",
-    backgroundColor: "#BBC2CC",
-    borderRadius: "1em"
+    backgroundImage: "url(https://media.istockphoto.com/photos/silver-textured-background-picture-id1135421909?b=1&k=20&m=1135421909&s=170667a&w=0&h=uuY6fpQXKVYmrk9zefSe3-PfEvjlSweSQt1AJrV0hEA=)",
+    borderRadius: "1em",
+    backgroundSize: "cover"
   },
   divider:{
     width: "1em",
-    height: "1em"
+    height: "1em",
   }
 
 }

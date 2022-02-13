@@ -13,8 +13,8 @@ class ScreenLayout extends React.Component {
     render() {
         const {menuItems, showMenu, currentActiveIndex, musicMenu, currentComponent, currentSongIndex, setCurrentSongIndex, isSongPlaying} = this.props;
         return (
-            <div style={styles.root}>
-                <div style={styles.mainScreen}>
+            <div className="base">
+                <div className="baseScreenStyles">
                     { showMenu && <List menuItems={menuItems} currentActiveIndex={currentActiveIndex} musicMenu={musicMenu} showMenu={showMenu}/>}  
                     { currentComponent === "Coverflow" && <Coverflow/>}
                     { currentComponent === "Settings" && <Settings />}
@@ -25,26 +25,6 @@ class ScreenLayout extends React.Component {
                 </div>
             </div>
         )
-    }
-}
-
-const styles = {
-    root: {
-        position: "relative",
-        overflow: "hidden",
-    },
-    mainScreen: {
-        width: "300px",
-        height: "300px",
-        backgroundColor: "white",
-        border: "2px solid black",
-        borderRadius: "5%",
-        backgroundImage: "url(https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg)",
-        overflow: "hidden",
-    },
-    listStyles:{
-        position: "absolute",
-        overflow: "hidden",
     }
 }
 
