@@ -2,6 +2,7 @@ import React from 'react';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import songsDetails from '../songsDetails';
 import ReactAudioPlayer from 'react-audio-player';
+import './music.css'
 class Music extends React.Component{
     constructor(props) {
         super();
@@ -24,19 +25,21 @@ class Music extends React.Component{
     render(){
         const audios = songsDetails;
         this.index = this.props.currentSongIndex;
+        // let selectedClass = (index === this.index ? "selectedlistItem": "songStyle")
+        // console.log(selectedClass)
         return (<div style={styles.gamesContainer}>
             <h1 style={styles.headerStyles}>All Songs</h1>
             { audios && 
               <div style={styles.songsContainer}>
                 {audios.map((song, index)=>{
-                  return <div style={index === this.index ? styles.selectedlistItem : styles.songStyle} key={index}>
-                    <AudiotrackIcon  style={styles.imageStyle}/>
+                  return <div className={index === this.index ? "activeSongUpdate" : ""} style={index === this.index ? styles.selectedlistItem : styles.songStyle} key={index}>
+                    <AudiotrackIcon />
                     <span >{song.name}</span>
                   </div>
                 })}
               </div>}
               <div style={styles.musicPlayer}>
-                  <ReactAudioPlayer src={songsDetails[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}} muted />
+                  <ReactAudioPlayer src={songsDetails[this.index].url} controls autoPlay onEnded={()=>{this.handleSongEnded()}} />
               </div>
         </div>)
     }
@@ -80,8 +83,7 @@ const styles={
         alignItems: "center",
         padding: "1px 0",
         borderBottom: "1px solid white",
-        backgroundColor: "skyblue",
-        color: "white"
+        backgroundColor: "skyblue"
     }
 }
 export default Music;
