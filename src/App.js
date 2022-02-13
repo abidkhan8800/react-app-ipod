@@ -19,6 +19,7 @@ class App extends React.Component {
     }
   }
 
+  // to hanlde click on the menu button
   handleMenuClick = () =>{
     if(this.state.showMenu){
      this.setState({showMenu: false});
@@ -26,11 +27,15 @@ class App extends React.Component {
       this.setState({showMenu: true})
     }
   }
+
+  // setting current index in the menu items 
   setCurrentIndex = (index) => {
       this.setState({
         currentIndex: index
       })
   }
+
+  // setting whichc component to display in the screenLayout
   setCurrentComponent = (component) => {
     let list = [];
     let listDisplayed = false;
@@ -46,12 +51,16 @@ class App extends React.Component {
       currentList: list
     })
   }
+
+  // setting which song to play
   setCurrentSongIndex = (index) => {
     this.setState({
       currentSongIndex: index,
       isSongPlaying: (!this.state.isSongPlaying) ? true: this.state.isSongPlaying
     })
   }
+
+  // handle play and pause on the song playing
 
   handlePlayPauseClick = () =>{
     if(this.state.isSongPlaying){

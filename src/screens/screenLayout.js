@@ -9,7 +9,7 @@ import Songs from "./allSongs";
 
 
 class ScreenLayout extends React.Component {
-
+    // common layout choosing which component to show
     render() {
         const {showMenu, currentIndex, musicMenu, currentComponent, currentSongIndex, isSongPlaying, currentList} = this.props.props;
         const {setCurrentSongIndex} = this.props;

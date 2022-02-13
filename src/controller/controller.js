@@ -14,6 +14,7 @@ class Controller extends React.Component {
     this.songIndex = 0;
   }
 
+  // handle the controller
   componentDidMount() {
     let currentAngle = 0;
     const region = new ZingTouch.Region(this.myRef.current);
@@ -31,6 +32,7 @@ class Controller extends React.Component {
           if(this.movingIndex > currentList.length-1){
             this.movingIndex = 0;
           }
+          // setting the index of the active list item
            setCurrentIndex(this.movingIndex)
         }
 
@@ -44,11 +46,13 @@ class Controller extends React.Component {
           if(this.movingIndex > currentList.length - 1){
             this.movingIndex = 0;
           }
+          // setting the index of the active list item
           setCurrentIndex(this.movingIndex)
         }
       });
   }
 
+  // handling click on the center button either to play/pause a song or selecting the current menu item
   handleSelectionChange = () => {
     const {currentList, showMenu} = this.props.props
     if(showMenu){
@@ -58,6 +62,7 @@ class Controller extends React.Component {
     }
   }
 
+  // hadling the action on the next button
   handleNextButton = () =>{
     this.songIndex++;
     if(this.songIndex > songsDetails.length - 1){
@@ -65,7 +70,8 @@ class Controller extends React.Component {
     }
     this.props.setCurrentSongIndex(this.songIndex);
   }
-
+  
+  //handling the action on the back button
   handleBackButton= () =>{
     this.songIndex--;
     if(this.songIndex < 0){
@@ -74,6 +80,7 @@ class Controller extends React.Component {
     this.props.setCurrentSongIndex(this.songIndex);
   }
 
+  // handling action on the paly/pause button
   handlePlayPauseButton = () => {
     this.props.handlePlayPauseClick();
   }

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 class List extends React.Component {
-
+    // to display menus
     render() {
         const {menuItems, currentActiveIndex} = this.props;
         return (

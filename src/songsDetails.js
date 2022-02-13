@@ -1,3 +1,4 @@
+// sample for auidos/songs
 const songsDetails = [
     {
         url: "https://cdn.pixabay.com/audio/2022/02/10/audio_fc48af67b2.mp3",
