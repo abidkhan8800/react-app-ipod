@@ -5,11 +5,157 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(90,88,102);
   background: linear-gradient(90deg, rgba(90,88,102,1) 0%, rgba(183,148,233,1) 100%);   
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+
+ /* Ipod styling */
+
+ /* Ipod screen(s) */
+ .base {
+  position: relative;
+  overflow: hidden;
+}
+ /* ipod common background */
+ .baseScreenStyles {
+  width: 300px;
+  height: 298px;
+  background-image: url(https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg);
+  border-radius: 5%;
+  background-size: cover;
+  overflow: hidden;
+  border: 2px solid white
+}
+/* Common styling for all the screens */
+.commonScreenStyles {
+  width: 300px;
+  height:300px;
+  background-image: url(https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?size=626&ext=jpg);
+  position: absolute;
+  border-radius: 5%;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* Common styling for all the headers */
+.commonHeaderStyles {
+  padding-top: "0.5em";
+  text-align: center;
+  color: black;
+}
+
+/* Songs containers styling */
+.songsContainer {
+  overflow: scroll;
+  padding-left: 0px 10px;
+  height: "250px";
+}
+
+/* Indiviual song styling */
+.songStyle {
+  display: flex;
+  align-items: center;
+  padding: 1px 0;
+  margin: 1px 0;
+  border-bottom: 1px solid white;
+}
+
+/* Indiviual song styling when song is played */
+.selectedSongStyles {
+  display: flex;
+  align-items: center;
+  padding: 1px 0;
+  border-bottom: 1px solid white;
+  background-color:skyblue;
+}
+
+/*  Little animation when a song is played */
+@keyframes activeSong {  
+  from {
+    color: rgb(226, 12, 12);
+  }
+  to {
+    color: rgb(255, 255, 255); 
+  }
+}
+
+.activeSongUpdate {
+  animation-duration: 1.5s;
+  animation-name: activeSong;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+/* Basic styling for the player */
+.musicPlayer {
+  position: absolute;
+  bottom: 0;
+}
+
+/* Menu and sub menu Stylings */
+
+/* main screen styling */
+.mainScreen {
+  width: 300px;
+  height: 300px;
+  border-radius: 5%;
+}
+
+
+@keyframes changeWidth {  
+  from {
+    width: 0px
+  }
+  to {
+    width: 150px
+  }
+}
+ /* menu list container styling */
+.menuContainer{
+  width: 150px;
+  height: 300px;
+  animation: changeWidth;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  background: white;
+}
+
+/* menu list header styling */
+.menuHeaderStyles{
+  padding: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* menu list item styling */
+.listItem {
+  padding: 0 5px;
+  font-size: 1em;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+}
+
+/* menu list item styling when selected */
+.selectedListItem {
+  padding: 0 5px;
+  font-size: 1em;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+  background-color: skyblue;
+  color:white;
+  padding-right: 15px;
 }
